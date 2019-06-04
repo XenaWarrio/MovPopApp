@@ -1,4 +1,4 @@
-package dx.queen.popmovapp;
+package dx.queen.popmovapp.controller;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,41 +12,45 @@ import com.bumptech.glide.Glide;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import dx.queen.popmovapp.R;
 import dx.queen.popmovapp.model.Movie;
 
 public class DetailFragment extends Fragment {
 
-    public static DetailFragment newInstance(int i) {
+
+    public static DetailFragment newInstance(int position) {
         Bundle args = new Bundle();
-        args.putInt(Movie.ARG_MOVIE_ID, i);
+        args.putInt(Movie.ARG_MOVIE_ID, position);
         DetailFragment fragment = new DetailFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    TextView nameOfMovie, plotSynopsis, userRating, releaseDate;
-    ImageView imageView;
+    private static final int STATUS_CODE = -1;
+
+    private TextView nameOfMovie, plotSynopsis, userRating, releaseDate;
+    private ImageView imageView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.content_detail, container, false);
-         initViews(v);
-         return v;
+        initViews(v);
+        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        int i =  getArguments().getInt(Movie.ARG_MOVIE_ID,-1);
-        if (i == -1)
-            throw new RuntimeException("Wrong boy id");
-        Movie movie = FragmentList.movieList.get(i);
+        int position = getArguments().getInt(Movie.ARG_MOVIE_ID, STATUS_CODE);
+        if (position == STATUS_CODE)
+            throw new RuntimeException("Wrong  id");
+        Movie movie = FragmentList.movieList.get(position);
         fillViews(movie);
 
     }
 
-    public void initViews(View v){
+    private void initViews(View v) {
         imageView = v.findViewById(R.id.thumbnail_image_header);
         nameOfMovie = v.findViewById(R.id.tv_title);
         plotSynopsis = v.findViewById(R.id.tv_plot_synopsis);
@@ -54,7 +58,7 @@ public class DetailFragment extends Fragment {
         releaseDate = v.findViewById(R.id.tv_release_date);
     }
 
-    private void fillViews(Movie movie){
+    private void fillViews(Movie movie) {
 
         String thumbnail = movie.getPosterPath();
         String movieName = movie.getOriginalTitle();
@@ -74,51 +78,7 @@ public class DetailFragment extends Fragment {
         releaseDate.setText(dateOfRelease);
 
 
-
-
     }
 
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-////
-     // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//       // initCollapsingToolbar();
-////
-
-
-
-
-//    private void initCollapsingToolbar(){
-//        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
-//        collapsingToolbarLayout.setTitle("");
-//        AppBarLayout appBarLayout =  findViewById(R.id.appbar);
-//        appBarLayout.setExpanded(true);
-//        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//
-//            boolean isShow = false;
-//            int scrollRange = -1;
-//
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                if(scrollRange == -1){
-//                    scrollRange = appBarLayout.getTotalScrollRange();
-//
-//                }
-//                if (scrollRange + verticalOffset == 0){
-//                    collapsingToolbarLayout.setTitle(getString(R.string.movie_details));
-//                    isShow = true;
-//                }else if(isShow){
-//                    collapsingToolbarLayout.setTitle("");
-//                    isShow = false;
-//                }
-//
-//
-//
-//            }
-//        });
-//
-//    }
-
-    }
+}

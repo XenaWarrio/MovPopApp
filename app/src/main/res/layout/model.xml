@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitXY"
+            />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_thumbnail"
+            android:paddingLeft="@dimen/movie_title_padding"
+            android:paddingRight="@dimen/movie_title_padding"
+            android:paddingTop="@dimen/movie_title_padding"
+            android:textColor="@color/movieTitle"
+            android:textSize="@dimen/movie_title"
+            />
+        <TextView
+            android:id="@+id/tv_user_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:paddingLeft="@dimen/movie_title_padding"
+            android:paddingRight="@dimen/movie_title_padding"
+            android:paddingBottom="@dimen/user_rating_padding_bottom"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/user_rating"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,9 +1,10 @@
-package dx.queen.popmovapp.api;
+package dx.queen.popmovapp.model.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Client {
+
     private static final  String BASE_URL = "http://api.themoviedb.org/3/";
     private static Retrofit retrofit = null;
 

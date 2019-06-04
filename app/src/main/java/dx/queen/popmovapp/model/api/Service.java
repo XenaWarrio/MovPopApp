@@ -1,4 +1,4 @@
-package dx.queen.popmovapp.api;
+package dx.queen.popmovapp.model.api;
 
 import dx.queen.popmovapp.model.MoviesResponse;
 import retrofit2.Call;

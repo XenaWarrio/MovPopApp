@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/viewBg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".DetailActivity"
-    tools:showIn="@layout/activity_detail">
+    tools:context=".controller.DetailFragment"
+    tools:showIn="@layout/content_detail">
 
     <ScrollView
         android:layout_width="match_parent"

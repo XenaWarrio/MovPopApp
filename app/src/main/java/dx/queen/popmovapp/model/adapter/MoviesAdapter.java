@@ -1,4 +1,4 @@
-package dx.queen.popmovapp.adapter;
+package dx.queen.popmovapp.model.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,12 +13,13 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import dx.queen.popmovapp.IDetailListener;
 import dx.queen.popmovapp.R;
 import dx.queen.popmovapp.model.Movie;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
 
-    private  IDetailListener listener;
+     IDetailListener listener;
     private Context context;
     private List<Movie> movieList;
 
@@ -28,23 +29,19 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     }
 
 
-    public  interface IDetailListener{
-        void openDetailFragment(int position);
-    }
-
 
     @NonNull
     @Override
     public MoviesAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_list, parent, false);
+                .inflate(R.layout.model, parent, false);
 
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MoviesAdapter.MyViewHolder holder, int position) {
-        holder.bind(position,listener);
+        holder.bind(position, listener);
 
     }
 
@@ -54,11 +51,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView title , user_rating;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView title, user_rating;
         public ImageView thumbnail;
 
-        public MyViewHolder( View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.tv_title);
             user_rating = itemView.findViewById(R.id.tv_user_rating);
@@ -66,7 +63,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
 
         }
 
-        public void bind( final int position, final IDetailListener listener) {
+        private void bind(final int position, final IDetailListener listener) {
             title.setText(movieList.get(position).getOriginalTitle());
             String vote = Double.toString(movieList.get(position).getVoteAverage());
             user_rating.setText(vote);
@@ -83,8 +80,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
 
                 }
             });
+
         }
     }
-
 }
 
